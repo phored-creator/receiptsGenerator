@@ -2,7 +2,6 @@ import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-	driver: "pglite",
 	dialect: "postgresql",
 	out: "./drizzle",
 	schema: "./postgresqlModels/src/schemas/index.ts",

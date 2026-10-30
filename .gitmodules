@@ -2,3 +2,4 @@
 	path = postgresqlModels
 	url = https://github.com/Forge-web/genModelsPostgreSQL.git
 	branch = main
+	ignore = dirty

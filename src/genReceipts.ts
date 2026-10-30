@@ -4,8 +4,8 @@ import {
 	organizations,
 	productItems,
 	users,
+	products,
 } from "../postgresqlModels/src/schemas";
-import { products } from "../postgresqlModels/src/schemas";
 import { db } from "./db";
 import { Item, Receipt } from "./types";
 import { UUID } from "node:crypto";
@@ -40,7 +40,7 @@ export async function generateReceipt() {
 
 	async function getRandomProductItems(
 		product: any,
-		count: number = 1,
+		count: number = 2,
 	) {
 		const [_productItems] = await db
 			.select()
@@ -60,13 +60,17 @@ export async function generateReceipt() {
 	}
 
 	const product = await getRandomProducts();
-	const item = await getRandomProductItems(product);
-	const invoices = await getInvoice(item);
+	const _productItems = await getRandomProductItems(product);
+	const invoices = await getInvoice(_productItems);
+	const organization = await getRandomOrganization();
+	const user = await getRandomUser();
 
 	console.log({
 		product,
-		item,
+		_productItems,
 		invoices,
+		organization,
+		user,
 	});
 }
 
